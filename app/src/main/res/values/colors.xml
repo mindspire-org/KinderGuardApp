@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="kg_primary_blue">#1B6FA8</color>
+    <color name="kg_primary_blue_dark">#154F79</color>
+    <color name="kg_navy">#1B2A4A</color>
+    <color name="kg_teal">#1EA672</color>
+    <color name="kg_orange">#E8622C</color>
+    <color name="kg_pink">#C2185B</color>
+    <color name="kg_field_bg">#E3E6EA</color>
+    <color name="kg_text_gray">#6B7280</color>
+    <color name="kg_white">#FFFFFF</color>
+    <color name="kg_black">#111111</color>
+    <color name="kg_danger">#D32F2F</color>
+    <color name="kg_success">#2E7D32</color>
+    <color name="kg_warning">#F9A825</color>
+    <color name="kg_surface">#F7F8FA</color>
+</resources>
