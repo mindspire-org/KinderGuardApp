@@ -71,6 +71,14 @@ public class ChildDashboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         refreshUi();
+        startMonitoringServiceIfPermitted();
+    }
+
+    private void startMonitoringServiceIfPermitted() {
+        if (PermissionUtils.hasLocationPermission(this)) {
+            androidx.core.content.ContextCompat.startForegroundService(this,
+                    new Intent(this, com.kinderguard.app.service.MonitoringForegroundService.class));
+        }
     }
 
     private void loadProfile() {

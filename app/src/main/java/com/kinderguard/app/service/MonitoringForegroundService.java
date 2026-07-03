@@ -132,6 +132,20 @@ public class MonitoringForegroundService extends Service {
             return;
         }
 
+        boolean hasLocationPermission =
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED
+                        || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED;
+        if (!hasLocationPermission) {
+            // Android 14+ throws SecurityException starting a location-type foreground
+            // service without the permission already granted. Bail out cleanly instead of
+            // crashing; the service will be restarted once permission is granted.
+            Log.w(TAG, "onCreate: location permission not granted yet, stopping service");
+            stopSelf();
+            return;
+        }
+
         startForeground(Constants.NOTIF_ID_FOREGROUND, buildForegroundNotification());
 
         try {
