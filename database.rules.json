@@ -1,0 +1,27 @@
+{
+  "rules": {
+    "parents": {
+      "$parentUid": {
+        ".read": "auth != null && auth.uid === $parentUid",
+        ".write": "auth != null && auth.uid === $parentUid",
+        "linkedChildren": {
+          "$childUid": {
+            ".write": "auth != null && auth.uid === $childUid"
+          }
+        }
+      }
+    },
+    "children": {
+      "$childUid": {
+        ".read": "auth != null && (auth.uid === $childUid || auth.uid === data.child('parentUid').val())",
+        ".write": "auth != null && (auth.uid === $childUid || auth.uid === data.child('parentUid').val())"
+      }
+    },
+    "linkCodes": {
+      "$code": {
+        ".read": "auth != null",
+        ".write": "auth != null && newData.val() === auth.uid"
+      }
+    }
+  }
+}

@@ -1,26 +1,66 @@
 {
   "project_info": {
-    "project_number": "000000000000",
-    "project_id": "kinderguard-REPLACE",
-    "storage_bucket": "kinderguard-REPLACE.appspot.com"
+    "project_number": "41811760688",
+    "firebase_url": "https://kinderguard-fyp-cms-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "kinderguard-fyp-cms",
+    "storage_bucket": "kinderguard-fyp-cms.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:000000000000:android:0000000000000000000000",
+        "mobilesdk_app_id": "1:41811760688:android:e56cef650abec524573ff5",
         "android_client_info": {
           "package_name": "com.kinderguard.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "41811760688-mh3hrjtbajfhtd6et9e50tktq9i14229.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "REPLACE_WITH_REAL_API_KEY"
+          "current_key": "AIzaSyCrStTy4_DuyeY2h6JArbhDCxwhZwopbv0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41811760688-mh3hrjtbajfhtd6et9e50tktq9i14229.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41811760688:android:ffac7abdfe0776a1573ff5",
+        "android_client_info": {
+          "package_name": "com.mansourappdevelopment.androidapp.kidsafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41811760688-mh3hrjtbajfhtd6et9e50tktq9i14229.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrStTy4_DuyeY2h6JArbhDCxwhZwopbv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41811760688-mh3hrjtbajfhtd6et9e50tktq9i14229.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
