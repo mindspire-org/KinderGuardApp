@@ -15,7 +15,7 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginTop="72dp"
-        android:src="@drawable/ic_launcher_shield"
+        android:src="@drawable/kinderguard_logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

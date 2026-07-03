@@ -9,6 +9,9 @@
 .cxx
 *.apk
 *.keystore
+*.jks
 !debug.keystore
+/keystore/
+/keystore.properties
 
 app/build/

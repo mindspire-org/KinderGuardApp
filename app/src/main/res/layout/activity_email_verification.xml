@@ -14,7 +14,7 @@
     <ImageView
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/ic_launcher_shield" />
+        android:src="@drawable/kinderguard_logo" />
 
     <TextView
         android:id="@+id/tvTitle"

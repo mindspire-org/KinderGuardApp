@@ -47,7 +47,7 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_launcher_shield" />
+            android:src="@drawable/kinderguard_logo" />
 
         <TextView
             android:layout_width="wrap_content"

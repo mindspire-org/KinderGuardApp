@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "41811760688-h2jdh4b6hasb9vq7480ch12nhpsq2hbu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kinderguard.app",
+            "certificate_hash": "f6717b0a506d9da967b404ca1ebaf58e42775346"
+          }
+        },
+        {
+          "client_id": "41811760688-p5g12v753e8d2lo4hrp9qgg55cf557cc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kinderguard.app",
+            "certificate_hash": "cff2bfe22e14a85e43e769f79174e62d66ebae2a"
+          }
+        },
+        {
           "client_id": "41811760688-mh3hrjtbajfhtd6et9e50tktq9i14229.apps.googleusercontent.com",
           "client_type": 3
         }

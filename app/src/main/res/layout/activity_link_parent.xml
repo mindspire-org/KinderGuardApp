@@ -12,7 +12,7 @@
         android:layout_height="72dp"
         android:layout_marginBottom="24dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_launcher_shield" />
+        android:src="@drawable/kinderguard_logo" />
 
     <TextView
         android:id="@+id/tvTitle"
