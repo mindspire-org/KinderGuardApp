@@ -9,57 +9,68 @@
     tools:context=".ui.parent.ChildDetailActivity">
 
     <LinearLayout
-        android:id="@+id/toolbar"
+        android:id="@+id/headerGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="8dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="12dp"
+        android:background="@drawable/bg_gradient_header_rounded"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/back"
-            android:src="@drawable/ic_back" />
-
-        <TextView
-            android:id="@+id/tvChildName"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:textColor="@color/kg_navy"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="Emma Johnson" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp">
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/back"
+                android:tint="@color/kg_white"
+                android:src="@drawable/ic_back" />
 
-    <LinearLayout
-        android:id="@+id/rowActions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="12dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+            <TextView
+                android:id="@+id/tvChildName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:textColor="@color/kg_white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Emma Johnson" />
 
-        <Button
-            android:id="@+id/btnLockToggle"
-            style="@style/KgButton.Primary"
-            android:layout_width="0dp"
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowActions"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/lock_device"
-            android:textSize="14sp" />
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
+            <Button
+                android:id="@+id/btnLockToggle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_pill_on_gradient"
+                android:text="@string/lock_device"
+                android:textAllCaps="false"
+                android:textColor="@color/kg_white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
@@ -70,7 +81,7 @@
         app:tabSelectedTextColor="@color/kg_primary_blue"
         app:tabTextColor="@color/kg_text_gray"
         app:tabIndicatorColor="@color/kg_primary_blue"
-        app:layout_constraintTop_toBottomOf="@id/rowActions" />
+        app:layout_constraintTop_toBottomOf="@id/headerGroup" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

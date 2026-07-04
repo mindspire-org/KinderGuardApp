@@ -66,6 +66,9 @@ public class InstalledAppsAdapter extends RecyclerView.Adapter<InstalledAppsAdap
             binding.tvAppLabel.setText(appInfo.appLabel);
             binding.tvPackageName.setText(appInfo.packageName);
             binding.btnToggleBlock.setText(appInfo.blocked ? R.string.unblock : R.string.block);
+            binding.iconBadge.setBackgroundResource(appInfo.blocked
+                    ? R.drawable.bg_avatar_danger
+                    : R.drawable.bg_avatar_gradient);
             binding.btnToggleBlock.setOnClickListener(v -> {
                 if (listener != null) listener.onToggleBlock(appInfo);
             });

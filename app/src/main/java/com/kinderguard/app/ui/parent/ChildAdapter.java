@@ -69,11 +69,13 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
             if (child.online) {
                 binding.dotStatus.setBackgroundResource(R.drawable.dot_status_green);
                 binding.tvStatus.setText(R.string.online);
+                binding.tvStatus.setBackgroundResource(R.drawable.bg_chip_success);
                 binding.tvStatus.setTextColor(
                         binding.getRoot().getContext().getColor(R.color.kg_success));
             } else {
                 binding.dotStatus.setBackgroundResource(R.drawable.dot_status_gray);
                 binding.tvStatus.setText(R.string.offline);
+                binding.tvStatus.setBackgroundResource(R.drawable.bg_chip_neutral);
                 binding.tvStatus.setTextColor(
                         binding.getRoot().getContext().getColor(R.color.kg_text_gray));
             }

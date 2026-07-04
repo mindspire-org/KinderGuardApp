@@ -79,6 +79,9 @@ public class CallLogAdapter extends RecyclerView.Adapter<CallLogAdapter.ViewHold
                     color = R.color.kg_text_gray;
             }
             binding.tvCallType.setTextColor(binding.getRoot().getContext().getColor(color));
+            binding.iconBadge.setBackgroundTintList(
+                    android.content.res.ColorStateList.valueOf(
+                            binding.getRoot().getContext().getColor(color)));
 
             long minutes = entry.durationSeconds / 60;
             long seconds = entry.durationSeconds % 60;

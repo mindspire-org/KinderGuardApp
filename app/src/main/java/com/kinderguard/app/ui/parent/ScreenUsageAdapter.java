@@ -15,10 +15,17 @@ import java.util.List;
 public class ScreenUsageAdapter extends RecyclerView.Adapter<ScreenUsageAdapter.ViewHolder> {
 
     private final List<UsageInfo> items = new ArrayList<>();
+    private long maxTimeMs = 1;
 
     public void submitList(List<UsageInfo> newList) {
         items.clear();
-        if (newList != null) items.addAll(newList);
+        maxTimeMs = 1;
+        if (newList != null) {
+            items.addAll(newList);
+            for (UsageInfo info : newList) {
+                maxTimeMs = Math.max(maxTimeMs, info.totalTimeMs);
+            }
+        }
         notifyDataSetChanged();
     }
 
@@ -36,7 +43,7 @@ public class ScreenUsageAdapter extends RecyclerView.Adapter<ScreenUsageAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(items.get(position));
+        holder.bind(items.get(position), maxTimeMs);
     }
 
     @Override
@@ -52,9 +59,10 @@ public class ScreenUsageAdapter extends RecyclerView.Adapter<ScreenUsageAdapter.
             this.binding = binding;
         }
 
-        void bind(UsageInfo usageInfo) {
+        void bind(UsageInfo usageInfo, long maxTimeMs) {
             binding.tvAppLabel.setText(usageInfo.appLabel);
             binding.tvDuration.setText(formatDuration(usageInfo.totalTimeMs));
+            binding.usageBar.setProgress((int) (usageInfo.totalTimeMs * 100 / maxTimeMs));
         }
 
         private String formatDuration(long ms) {

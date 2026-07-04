@@ -1,3 +1,21 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
-    <solid android:color="@color/kg_danger" />
-</shape>
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#1AD32F2F" />
+        </shape>
+    </item>
+    <item
+        android:top="12dp"
+        android:bottom="12dp"
+        android:start="12dp"
+        android:end="12dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="110dp"
+                android:centerColor="#F4433C"
+                android:endColor="@color/kg_danger" />
+        </shape>
+    </item>
+</layer-list>

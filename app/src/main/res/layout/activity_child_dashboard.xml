@@ -13,51 +13,64 @@
         android:orientation="vertical"
         android:paddingBottom="32dp">
 
-        <!-- Toolbar -->
+        <!-- Gradient header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/kg_white"
-            android:gravity="center_vertical"
-            android:paddingStart="24dp"
-            android:paddingEnd="8dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/child_dashboard"
-                android:textColor="@color/kg_navy"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ImageButton
-                android:id="@+id/btnOverflow"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/settings"
-                android:src="@drawable/ic_overflow" />
-
-        </LinearLayout>
-
-        <!-- Profile + monitoring status -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:background="@drawable/bg_card"
+            android:background="@drawable/bg_gradient_header_rounded"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingBottom="44dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="24dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/child_dashboard"
+                    android:textColor="@color/kg_white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnOverflow"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/settings"
+                    android:tint="@color/kg_white"
+                    android:src="@drawable/ic_overflow" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_avatar_on_gradient">
+
+                <ImageView
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"
+                    android:tint="@color/kg_white"
+                    android:src="@drawable/ic_person_child" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tvChildName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/kg_navy"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/kg_white"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Alex Johnson" />
@@ -66,137 +79,202 @@
                 android:id="@+id/tvChildEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/kg_text_gray"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:textColor="#E0FFFFFF"
                 android:textSize="14sp"
                 tools:text="alex@example.com" />
-
-            <TextView
-                android:id="@+id/tvMonitoringStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_chip_success"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:text="@string/monitoring_active"
-                android:textColor="@color/kg_success"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
         </LinearLayout>
+
+        <!-- Monitoring status card, floats over the gradient header -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="-28dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="@color/kg_white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:id="@+id/tvMonitoringStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_chip_success"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/monitoring_active"
+                    android:textColor="@color/kg_success"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Permission status -->
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_card"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/permission_status"
-                android:textColor="@color/kg_navy"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/kg_white">
 
             <LinearLayout
-                android:id="@+id/permissionStatusContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:padding="20dp">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/permission_status"
+                    android:textColor="@color/kg_navy"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/permissionStatusContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Running services -->
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_card"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/running_services"
-                android:textColor="@color/kg_navy"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/kg_white">
 
             <LinearLayout
-                android:id="@+id/runningServicesContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:padding="20dp">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/running_services"
+                    android:textColor="@color/kg_navy"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/runningServicesContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Device info -->
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_card"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="28dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/kg_white">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/device_info"
-                android:textColor="@color/kg_navy"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:padding="20dp">
 
-            <TextView
-                android:id="@+id/tvDeviceModel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/kg_text_gray"
-                android:textSize="14sp"
-                tools:text="Model: Pixel 8" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/device_info"
+                    android:textColor="@color/kg_navy"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvDeviceOs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/kg_text_gray"
-                android:textSize="14sp"
-                tools:text="Android: 15" />
+                <TextView
+                    android:id="@+id/tvDeviceModel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/kg_text_gray"
+                    android:textSize="14sp"
+                    tools:text="Model: Pixel 8" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvDeviceOs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/kg_text_gray"
+                    android:textSize="14sp"
+                    tools:text="Android: 15" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- SOS -->
-        <Button
-            android:id="@+id/btnSendSos"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/bg_sos_button"
-            android:drawableTop="@drawable/ic_sos"
-            android:elevation="4dp"
-            android:text="@string/send_sos"
-            android:textAllCaps="false"
-            android:textColor="@color/kg_white"
-            android:textSize="16sp"
+            android:layout_marginBottom="12dp"
+            android:text="Emergency"
+            android:textColor="@color/kg_text_gray"
+            android:textSize="13sp"
             android:textStyle="bold" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <View
+                android:id="@+id/sosPulseRing"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_sos_pulse_ring" />
+
+            <TextView
+                android:id="@+id/btnSendSos"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_sos_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:drawableTop="@drawable/ic_sos"
+                android:drawablePadding="4dp"
+                android:elevation="6dp"
+                android:text="@string/send_sos"
+                android:textAllCaps="false"
+                android:textColor="@color/kg_white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </FrameLayout>
 
     </LinearLayout>
 

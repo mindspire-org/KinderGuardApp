@@ -63,8 +63,22 @@ public class ChildDashboardActivity extends AppCompatActivity {
         binding.btnOverflow.setOnClickListener(this::showOverflowMenu);
         binding.btnSendSos.setOnClickListener(v -> sendSos());
 
+        startSosPulseAnimation();
         loadProfile();
         loadDeviceInfo();
+    }
+
+    private void startSosPulseAnimation() {
+        View ring = binding.sosPulseRing;
+        android.animation.ObjectAnimator scaleX = android.animation.ObjectAnimator.ofFloat(ring, "scaleX", 1f, 1.25f);
+        android.animation.ObjectAnimator scaleY = android.animation.ObjectAnimator.ofFloat(ring, "scaleY", 1f, 1.25f);
+        android.animation.ObjectAnimator alpha = android.animation.ObjectAnimator.ofFloat(ring, "alpha", 0.9f, 0f);
+        for (android.animation.ObjectAnimator animator : new android.animation.ObjectAnimator[]{scaleX, scaleY, alpha}) {
+            animator.setDuration(1400);
+            animator.setRepeatCount(android.animation.ValueAnimator.INFINITE);
+            animator.setRepeatMode(android.animation.ValueAnimator.RESTART);
+            animator.start();
+        }
     }
 
     @Override

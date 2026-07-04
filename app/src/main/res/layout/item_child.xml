@@ -7,8 +7,8 @@
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:layout_marginTop="8dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="2dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="3dp"
     app:cardBackgroundColor="@color/kg_white">
 
     <LinearLayout
@@ -23,21 +23,29 @@
         android:padding="16dp">
 
         <FrameLayout
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/bg_circle_field">
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/bg_avatar_gradient">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:layout_gravity="center"
+                android:tint="@color/kg_white"
                 android:src="@drawable/ic_person_child" />
+
+            <View
+                android:id="@+id/dotStatus"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="bottom|end"
+                android:background="@drawable/dot_status_green" />
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="14dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -46,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/kg_navy"
-                android:textSize="16sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 tools:text="Emma Johnson" />
 
@@ -58,28 +66,26 @@
                 android:textColor="@color/kg_text_gray"
                 android:textSize="13sp"
                 tools:text="emma@example.com" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <View
-                android:id="@+id/dotStatus"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginEnd="6dp"
-                android:background="@drawable/dot_status_green" />
 
             <TextView
                 android:id="@+id/tvStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/kg_text_gray"
-                android:textSize="13sp"
-                tools:text="Online" />
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_chip_success"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textColor="@color/kg_success"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="ONLINE" />
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_chevron_right" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
