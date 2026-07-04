@@ -73,16 +73,30 @@ public class GeofenceFragment extends Fragment {
         DialogAddGeofenceBinding dialogBinding =
                 DialogAddGeofenceBinding.inflate(LayoutInflater.from(requireContext()));
 
-        new AlertDialog.Builder(requireContext())
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
                 .setTitle("Add Safe Zone")
                 .setView(dialogBinding.getRoot())
-                .setPositiveButton("Save", (dialog, which) ->
-                        onSaveGeofence(dialogBinding))
+                .setPositiveButton("Save", null)
                 .setNegativeButton(com.kinderguard.app.R.string.cancel, null)
-                .show();
+                .create();
+        dialog.show();
+        // Override the default auto-dismiss so invalid input doesn't lose what was typed.
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            if (onSaveGeofence(dialogBinding)) dialog.dismiss();
+        });
+
+        monitoringRepository.getLastLocationOnce(childUid, points -> {
+            if (binding == null || points.isEmpty()) return;
+            com.kinderguard.app.model.LocationPoint last = points.get(0);
+            dialogBinding.etLatitude.setText(String.valueOf(last.latitude));
+            dialogBinding.etLongitude.setText(String.valueOf(last.longitude));
+            dialogBinding.tvHint.setText("Pre-filled with the child's last known location — adjust if needed.");
+            dialogBinding.tvHint.setVisibility(View.VISIBLE);
+        });
     }
 
-    private void onSaveGeofence(DialogAddGeofenceBinding dialogBinding) {
+    /** @return true if the zone was valid and saved (dialog should close), false to keep it open. */
+    private boolean onSaveGeofence(DialogAddGeofenceBinding dialogBinding) {
         String name = getText(dialogBinding.etZoneName);
         String latStr = getText(dialogBinding.etLatitude);
         String lngStr = getText(dialogBinding.etLongitude);
@@ -90,7 +104,7 @@ public class GeofenceFragment extends Fragment {
 
         if (name.isEmpty() || latStr.isEmpty() || lngStr.isEmpty() || radiusStr.isEmpty()) {
             Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
 
         double lat, lng, radius;
@@ -101,11 +115,22 @@ public class GeofenceFragment extends Fragment {
         } catch (NumberFormatException e) {
             Toast.makeText(requireContext(), "Latitude, longitude, and radius must be numbers",
                     Toast.LENGTH_SHORT).show();
-            return;
+            return false;
+        }
+
+        if (lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+            Toast.makeText(requireContext(), "Latitude must be -90..90 and longitude -180..180",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (radius <= 0) {
+            Toast.makeText(requireContext(), "Radius must be greater than 0", Toast.LENGTH_SHORT).show();
+            return false;
         }
 
         GeofenceZone zone = new GeofenceZone(UUID.randomUUID().toString(), name, lat, lng, radius);
         monitoringRepository.saveGeofence(childUid, zone);
+        return true;
     }
 
     private String getText(EditText editText) {

@@ -143,6 +143,23 @@ public class MonitoringRepository {
         FirebaseRefs.childLocation(childUid).addValueEventListener(listener);
     }
 
+    public void getLastLocationOnce(String childUid, ListResultCallback<LocationPoint> callback) {
+        FirebaseRefs.childLocation(childUid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                LocationPoint point = snapshot.getValue(LocationPoint.class);
+                java.util.List<LocationPoint> result = new ArrayList<>();
+                if (point != null) result.add(point);
+                callback.onResult(result);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                callback.onResult(new ArrayList<>());
+            }
+        });
+    }
+
     // ---- Geofences ----
 
     public void saveGeofence(String childUid, GeofenceZone zone) {

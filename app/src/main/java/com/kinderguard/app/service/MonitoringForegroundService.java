@@ -168,6 +168,7 @@ public class MonitoringForegroundService extends Service {
 
         setupGeofenceListener();
         setupCommandsListener();
+        setupBlockedAppsListener();
         setupLocationUpdates();
     }
 
@@ -271,6 +272,27 @@ public class MonitoringForegroundService extends Service {
             });
         } catch (Exception e) {
             Log.w(TAG, "setupGeofenceListener failed", e);
+        }
+    }
+
+    // ---- Blocked apps (source of truth: the "blocked" field on each app in Firebase) ----
+
+    private void setupBlockedAppsListener() {
+        try {
+            monitoringRepository.listenApps(childUid, apps -> {
+                Set<String> updated = new HashSet<>();
+                if (apps != null) {
+                    for (com.kinderguard.app.model.AppInfo app : apps) {
+                        if (app != null && app.blocked && app.packageName != null) {
+                            updated.add(app.packageName);
+                        }
+                    }
+                }
+                blockedPackages.clear();
+                blockedPackages.addAll(updated);
+            });
+        } catch (Exception e) {
+            Log.w(TAG, "setupBlockedAppsListener failed", e);
         }
     }
 

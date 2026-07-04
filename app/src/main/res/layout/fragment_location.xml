@@ -27,4 +27,21 @@
         app:layout_constraintTop_toBottomOf="@id/tvLastUpdated"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <TextView
+        android:id="@+id/tvEmptyState"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/kg_surface"
+        android:gravity="center"
+        android:text="Waiting for the child device to report its location…"
+        android:textColor="@color/kg_text_gray"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/tvLastUpdated"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="gone" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

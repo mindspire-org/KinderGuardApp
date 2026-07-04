@@ -65,8 +65,17 @@ public class GeofenceAdapter extends RecyclerView.Adapter<GeofenceAdapter.ViewHo
         void bind(GeofenceZone zone, OnDeleteListener listener) {
             binding.tvZoneName.setText(zone.name);
             binding.tvZoneRadius.setText(((int) zone.radiusMeters) + " m radius");
-            binding.dotInside.setBackgroundResource(
-                    zone.childInside ? R.drawable.dot_status_green : R.drawable.dot_status_gray);
+            if (zone.childInside) {
+                binding.tvInsideStatus.setText("INSIDE");
+                binding.tvInsideStatus.setBackgroundResource(R.drawable.bg_chip_success);
+                binding.tvInsideStatus.setTextColor(
+                        binding.getRoot().getContext().getColor(R.color.kg_success));
+            } else {
+                binding.tvInsideStatus.setText("OUTSIDE");
+                binding.tvInsideStatus.setBackgroundResource(R.drawable.bg_chip_neutral);
+                binding.tvInsideStatus.setTextColor(
+                        binding.getRoot().getContext().getColor(R.color.kg_text_gray));
+            }
             binding.btnDelete.setOnClickListener(v -> {
                 if (listener != null) listener.onDelete(zone);
             });

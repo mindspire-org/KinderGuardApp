@@ -31,14 +31,6 @@
                 android:src="@drawable/ic_perm_location" />
         </FrameLayout>
 
-        <View
-            android:id="@+id/dotInside"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginEnd="12dp"
-            android:visibility="gone"
-            android:background="@drawable/dot_status_green" />
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -62,6 +54,21 @@
                 android:textColor="@color/kg_text_gray"
                 android:textSize="13sp"
                 tools:text="200 m radius" />
+
+            <TextView
+                android:id="@+id/tvInsideStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_chip_neutral"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="OUTSIDE"
+                tools:textColor="@color/kg_text_gray" />
         </LinearLayout>
 
         <ImageButton

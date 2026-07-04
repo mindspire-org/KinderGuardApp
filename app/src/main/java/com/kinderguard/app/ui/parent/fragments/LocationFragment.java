@@ -61,16 +61,23 @@ public class LocationFragment extends Fragment {
 
         binding.mapView.setTileSource(TileSourceFactory.MAPNIK);
         binding.mapView.setMultiTouchControls(true);
-        binding.mapView.getController().setZoom(16.0);
+        binding.mapView.getController().setZoom(2.0);
+        binding.mapView.getController().setCenter(new GeoPoint(20.0, 0.0));
 
         marker = new Marker(binding.mapView);
         binding.mapView.getOverlays().add(marker);
+
+        binding.tvLastUpdated.setText("No location reported yet");
+        binding.tvEmptyState.setVisibility(View.VISIBLE);
+        binding.mapView.setVisibility(View.GONE);
 
         monitoringRepository.listenLocation(childUid, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 LocationPoint point = snapshot.getValue(LocationPoint.class);
                 if (point == null || binding == null) return;
+                binding.tvEmptyState.setVisibility(View.GONE);
+                binding.mapView.setVisibility(View.VISIBLE);
                 GeoPoint geoPoint = new GeoPoint(point.latitude, point.longitude);
                 marker.setPosition(geoPoint);
                 binding.mapView.getController().setCenter(geoPoint);
