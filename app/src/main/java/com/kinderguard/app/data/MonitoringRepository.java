@@ -215,6 +215,28 @@ public class MonitoringRepository {
         FirebaseRefs.childSos(childUid).addChildEventListener(listener);
     }
 
+    /** Streams the full list of SOS alerts for a child, most-recent-first is left to the caller. */
+    public void listenAllSos(String childUid, ListResultCallback<SosAlert> callback) {
+        FirebaseRefs.childSos(childUid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<SosAlert> list = new ArrayList<>();
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    SosAlert alert = child.getValue(SosAlert.class);
+                    if (alert != null) list.add(alert);
+                }
+                callback.onResult(list);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
+    }
+
+    public void acknowledgeSos(String childUid, String alertId) {
+        FirebaseRefs.childSos(childUid).child(alertId).child("acknowledged").setValue(true);
+    }
+
     private String safeKey(String raw) {
         if (raw == null) return "unknown";
         return raw.replace(".", "_").replace("#", "_").replace("$", "_")

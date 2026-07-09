@@ -7,20 +7,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.kinderguard.app.R;
+import com.kinderguard.app.data.ChildRepository;
 import com.kinderguard.app.data.MonitoringRepository;
 import com.kinderguard.app.data.PrefsManager;
 import com.kinderguard.app.databinding.ActivityChildDetailBinding;
+import com.kinderguard.app.model.ChildUser;
 import com.kinderguard.app.model.Command;
 import com.kinderguard.app.utils.Constants;
 
 public class ChildDetailActivity extends AppCompatActivity {
 
     private static final String[] TAB_TITLES = {
-            "tab_apps", "tab_usage", "tab_calls", "tab_sms", "tab_location", "tab_geofence"
+            "tab_apps", "tab_usage", "tab_calls", "tab_sms", "tab_location", "tab_geofence", "tab_sos"
     };
 
     private ActivityChildDetailBinding binding;
     private final MonitoringRepository monitoringRepository = new MonitoringRepository();
+    private final ChildRepository childRepository = new ChildRepository();
     private String childUid;
     private boolean locked = false;
 
@@ -49,7 +52,7 @@ public class ChildDetailActivity extends AppCompatActivity {
 
         int[] tabTitleRes = {
                 R.string.tab_apps, R.string.tab_usage, R.string.tab_calls,
-                R.string.tab_sms, R.string.tab_location, R.string.tab_geofence
+                R.string.tab_sms, R.string.tab_location, R.string.tab_geofence, R.string.tab_sos
         };
 
         new TabLayoutMediator(binding.tabLayout, binding.viewPager,
@@ -57,18 +60,35 @@ public class ChildDetailActivity extends AppCompatActivity {
     }
 
     private void setupLockToggle() {
-        updateLockButtonText();
+        // The lock state is persisted in Firebase (rather than just kept in memory) so the
+        // button reflects the last request the parent actually sent, even after navigating
+        // away and back. There is no way to read the device's true OS-level lock state remotely.
+        childRepository.getChildProfile(childUid, new ChildRepository.ResultCallback<ChildUser>() {
+            @Override
+            public void onResult(ChildUser value) {
+                locked = value != null && value.deviceLocked;
+                updateLockButtonText();
+            }
+
+            @Override
+            public void onError(String message) {
+                updateLockButtonText();
+            }
+        });
+
         binding.btnLockToggle.setOnClickListener(v -> {
             locked = !locked;
             String type = locked ? Command.TYPE_LOCK : Command.TYPE_UNLOCK;
             Command command = new Command(UUID.randomUUID().toString(), type, null,
                     System.currentTimeMillis());
             monitoringRepository.sendCommand(childUid, command);
+            childRepository.setDeviceLocked(childUid, locked);
             updateLockButtonText();
         });
     }
 
     private void updateLockButtonText() {
         binding.btnLockToggle.setText(locked ? R.string.unlock_device : R.string.lock_device);
+        binding.tvLockDisclaimer.setVisibility(locked ? android.view.View.VISIBLE : android.view.View.GONE);
     }
 }

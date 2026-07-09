@@ -60,12 +60,19 @@
     <string name="tab_sms">SMS</string>
     <string name="tab_location">Location</string>
     <string name="tab_geofence">Geofence</string>
+    <string name="tab_sos">SOS</string>
     <string name="lock_device">Lock Device</string>
     <string name="unlock_device">Unlock Device</string>
+    <string name="unlock_disclaimer">Android doesn\'t allow apps to remotely unlock a screen — this only notifies your child that you tried.</string>
     <string name="block">Block</string>
     <string name="unblock">Unblock</string>
     <string name="add_safe_zone">Add Safe Zone</string>
     <string name="sos_alert_title">SOS Alert</string>
+    <string name="sos_history_empty">No SOS alerts yet.</string>
+    <string name="sos_acknowledge">Acknowledge</string>
+    <string name="sos_acknowledged">ACKNOWLEDGED</string>
+    <string name="sos_unacknowledged">UNACKNOWLEDGED</string>
+    <string name="open_in_maps">Open in Maps</string>
 
     <!-- Child dashboard -->
     <string name="child_dashboard">Child Dashboard</string>

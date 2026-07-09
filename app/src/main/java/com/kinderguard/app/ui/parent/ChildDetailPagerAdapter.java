@@ -11,6 +11,7 @@ import com.kinderguard.app.ui.parent.fragments.InstalledAppsFragment;
 import com.kinderguard.app.ui.parent.fragments.LocationFragment;
 import com.kinderguard.app.ui.parent.fragments.ScreenUsageFragment;
 import com.kinderguard.app.ui.parent.fragments.SmsLogsFragment;
+import com.kinderguard.app.ui.parent.fragments.SosAlertsFragment;
 
 public class ChildDetailPagerAdapter extends FragmentStateAdapter {
 
@@ -37,6 +38,8 @@ public class ChildDetailPagerAdapter extends FragmentStateAdapter {
                 return LocationFragment.newInstance(childUid);
             case 5:
                 return GeofenceFragment.newInstance(childUid);
+            case 6:
+                return SosAlertsFragment.newInstance(childUid);
             default:
                 throw new IllegalArgumentException("Invalid tab position: " + position);
         }
@@ -44,6 +47,6 @@ public class ChildDetailPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 7;
     }
 }

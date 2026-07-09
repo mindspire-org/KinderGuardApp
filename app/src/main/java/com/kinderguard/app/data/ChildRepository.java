@@ -47,4 +47,9 @@ public class ChildRepository {
         FirebaseRefs.child(childUid).child("deviceModel").setValue(model);
         FirebaseRefs.child(childUid).child("osVersion").setValue(osVersion);
     }
+
+    /** Persists the parent's last-sent lock request so the toggle survives reopening the screen. */
+    public void setDeviceLocked(String childUid, boolean locked) {
+        FirebaseRefs.child(childUid).child("deviceLocked").setValue(locked);
+    }
 }

@@ -71,6 +71,20 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvLockDisclaimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/unlock_disclaimer"
+            android:textColor="#E0FFFFFF"
+            android:textSize="11sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
     </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout

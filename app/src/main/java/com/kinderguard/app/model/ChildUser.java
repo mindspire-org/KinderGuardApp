@@ -16,6 +16,7 @@ public class ChildUser {
     public String osVersion;
     public LocationPoint lastLocation;
     public long createdAt;
+    public boolean deviceLocked;
 
     public ChildUser() {
         // required for Firebase
